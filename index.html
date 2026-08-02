@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ProspectFit | Client Fit & Intake</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="ProspectFit home"
+        ><span class="brand-mark">P</span><span>ProspectFit</span></a
+      >
+      <span class="product-label">Professional Navy &amp; Teal</span>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div>
+          <p class="eyebrow">BUSINESS DEVELOPMENT TOOL</p>
+          <h1>Client Fit & Intake</h1>
+          <p>
+            Evaluate a prospect’s readiness and training alignment in one guided
+            workflow.
+          </p>
+        </div>
+        <button id="sampleButton" class="secondary">
+          Load sample prospect
+        </button>
+      </section>
+
+      <ol class="steps" aria-label="Assessment progress">
+        <li class="active">
+          <span>1</span>
+          <div><strong>Intake</strong><small>Capture details</small></div>
+        </li>
+        <li>
+          <span>2</span>
+          <div><strong>Assess</strong><small>Evaluate fit</small></div>
+        </li>
+        <li>
+          <span>3</span>
+          <div><strong>Review</strong><small>Human sign-off</small></div>
+        </li>
+      </ol>
+
+      <div class="workspace">
+        <form id="intakeForm" class="form-card">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">PROSPECT PROFILE</p>
+              <h2>Organization & opportunity</h2>
+            </div>
+            <button type="reset" class="text-button">Clear form</button>
+          </div>
+          <div class="form-grid">
+            <label
+              >Organization name<input
+                id="organization"
+                type="text"
+                placeholder="e.g., Northstar Manufacturing"
+            /></label>
+            <label
+              >Industry<select id="industry">
+                <option value="">Select industry</option>
+                <option>Manufacturing</option>
+                <option>Healthcare</option>
+                <option>Technology</option>
+                <option>Financial Services</option>
+                <option>Government / Nonprofit</option>
+                <option>Other</option>
+              </select></label
+            >
+            <label
+              >Primary training need<select id="need">
+                <option value="0">Select training need</option>
+                <option value="25">AI & data analytics</option>
+                <option value="23">Cloud computing</option>
+                <option value="21">Product management</option>
+                <option value="18">Leadership development</option>
+                <option value="14">General workforce training</option>
+              </select></label
+            >
+            <label
+              >Estimated audience<select id="audience">
+                <option value="0">Select audience size</option>
+                <option value="6">Under 20 learners</option>
+                <option value="12">20–49 learners</option>
+                <option value="18">50–119 learners</option>
+                <option value="25">120–249 learners</option>
+                <option value="20">250+ learners</option>
+              </select></label
+            >
+            <label
+              >Budget readiness<select id="budget">
+                <option value="0">Select budget</option>
+                <option value="5">Under $10,000</option>
+                <option value="10">$10,000–$24,999</option>
+                <option value="18">$25,000–$49,999</option>
+                <option value="25">$50,000 or more</option>
+                <option value="3">Budget unknown</option>
+              </select></label
+            >
+            <label
+              >Decision authority<select id="authority">
+                <option value="0">Select access level</option>
+                <option value="6">Early researcher</option>
+                <option value="12">Internal influencer</option>
+                <option value="18">Direct sponsor access</option>
+                <option value="25">Final decision-maker</option>
+              </select></label
+            >
+            <label class="full"
+              >Implementation timeline<select id="timeline">
+                <option value="0">Select timeline</option>
+                <option value="5">More than 12 months</option>
+                <option value="10">6–12 months</option>
+                <option value="18">3–6 months</option>
+                <option value="25">Within 3 months</option>
+                <option value="3">Timeline unknown</option>
+              </select></label
+            >
+            <label class="full"
+              >Business challenge<textarea
+                id="challenge"
+                rows="4"
+                placeholder="Describe the business outcome the prospect wants to achieve."
+              ></textarea
+              ><small
+                >Be concise and avoid confidential information.</small
+              ></label
+            >
+          </div>
+          <div class="signoff">
+            <label class="check"
+              ><input id="reviewCheck" type="checkbox" /><span
+                >I reviewed the intake details and score before qualifying this
+                prospect.</span
+              ></label
+            >
+            <button id="qualifyButton" type="button" class="primary" disabled>
+              Qualify for follow-up
+            </button>
+          </div>
+          <p id="confirmation" class="confirmation" role="status" hidden>
+            Review recorded. This prospect is ready for a human-led discovery
+            conversation.
+          </p>
+        </form>
+
+        <aside class="score-card" aria-live="polite">
+          <p class="eyebrow">LIVE FIT SCORE</p>
+          <div class="gauge">
+            <div class="gauge-center">
+              <strong id="score">0</strong><span>/100</span>
+            </div>
+          </div>
+          <div id="status" class="status neutral">Incomplete assessment</div>
+          <h3 id="recommendation">
+            Complete the fit factors to see a recommendation.
+          </h3>
+          <div class="metrics">
+            <div>
+              <span>Need alignment</span
+              ><progress id="needBar" max="25" value="0"></progress
+              ><b id="needValue">0/25</b>
+            </div>
+            <div>
+              <span>Budget readiness</span
+              ><progress id="budgetBar" max="25" value="0"></progress
+              ><b id="budgetValue">0/25</b>
+            </div>
+            <div>
+              <span>Decision access</span
+              ><progress id="authorityBar" max="25" value="0"></progress
+              ><b id="authorityValue">0/25</b>
+            </div>
+            <div>
+              <span>Timeline & audience</span
+              ><progress id="deliveryBar" max="25" value="0"></progress
+              ><b id="deliveryValue">0/25</b>
+            </div>
+          </div>
+          <div class="notice">
+            <strong>Human review required</strong
+            ><span
+              >The score guides prioritization. It does not approve, reject, or
+              contact a prospect.</span
+            >
+          </div>
+        </aside>
+      </div>
+      <section class="how-it-works">
+        <p class="eyebrow">TRANSPARENT SCORING</p>
+        <h2>How the score works</h2>
+        <p>
+          Four categories contribute up to 25 points each. Scores of 75–100
+          indicate strong potential, 50–74 suggest further discovery, and below
+          50 indicates a low-current fit. Missing answers receive zero points,
+          so incomplete forms cannot appear fully qualified.
+        </p>
+      </section>
+    </main>
+    <footer>
+      ProspectFit
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
